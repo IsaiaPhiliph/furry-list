@@ -2,7 +2,6 @@ import Head from "next/head";
 import { MouseEventHandler, useEffect, useState } from "react";
 import AnimeItem from "../components/AnimeItem";
 import Loading from "../components/Loading";
-import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 import { getSearchResults } from "../hooks/api";
