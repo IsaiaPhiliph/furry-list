@@ -5,8 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start -p $PORT",
-        "export": "npm run build && next export -o _static"
+        "start": "next start"
     },
     "dependencies": {
         "next": "10.2.0",
