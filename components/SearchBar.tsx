@@ -7,7 +7,7 @@ function SearchBar() {
     const router = useRouter();
     return (
         <form
-            className="flex flex-col gap-y-4 w-full"
+            className="flex flex-col gap-y-4 w-full sm:max-w-lg"
             onSubmit={(e) => {
                 e.preventDefault();
                 if (search && search.length >= 3)

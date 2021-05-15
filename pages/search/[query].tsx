@@ -16,9 +16,18 @@ function SearchResultsPage() {
     console.log(query);
     useEffect(() => {
         (async () => {
-            query && setResults(await getSearchResults(query, page, setError));
+            if (query) {
+                setLoading(true);
+                console.log(
+                    "%cmaking search request",
+                    "background-color:white;color:#333"
+                );
+                query &&
+                    setResults(await getSearchResults(query, page, setError));
+                setLoading(false);
+            }
         })();
-    }, [page]);
+    }, [page, query]);
 
     return (
         <main className="bg-gray-100">

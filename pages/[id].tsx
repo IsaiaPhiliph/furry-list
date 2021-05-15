@@ -9,7 +9,7 @@ export default function AnimeDetails({ data }) {
     return (
         <div>
             <Head>
-                <title>{router.query.id}</title>
+                <title>{data.title}</title>
                 <meta
                     name="description"
                     content="The best Anime and Manga community"
