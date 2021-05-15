@@ -1,14 +1,9 @@
 import Head from "next/head";
-import { MouseEventHandler, useEffect, useState } from "react";
-import AnimeItem from "../components/AnimeItem";
-import Loading from "../components/Loading";
-import SearchResults from "../components/SearchResults";
-import { AnimeSearchResult, AnimeDetailsResult } from "../types/interfaces";
-import { Anime } from "../types/interfaces";
 import { useRouter } from "next/router";
 import { getAnimeDetails } from "../hooks/api";
 import { GetStaticPaths } from "next";
 import AnimeDetail from "../components/AnimeDetail";
+import { AnimeDetailsResult } from "../types/interfaces";
 export default function AnimeDetails({ data }) {
     const router = useRouter();
     return (
@@ -49,7 +44,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<{
             { params: { id: "3" } },
             { params: { id: "4" } },
         ],
-        fallback: false,
+        fallback: "blocking",
     };
 };
 
