@@ -3,10 +3,13 @@ import { MouseEventHandler, useEffect, useState } from "react";
 import AnimeItem from "../components/AnimeItem";
 import Loading from "../components/Loading";
 import SearchResults from "../components/SearchResults";
-import AnimeSearchResult from "../types/AnimeSearchResult";
-import { Anime } from "./../types/AnimeSearchResult";
+import { AnimeSearchResult, AnimeDetailsResult } from "../types/interfaces";
+import { Anime } from "../types/interfaces";
 import { useRouter } from "next/router";
-export default function AnimeDetails() {
+import { getAnimeDetails } from "../hooks/api";
+import { GetStaticPaths } from "next";
+import AnimeDetail from "../components/AnimeDetail";
+export default function AnimeDetails({ data }) {
     const router = useRouter();
     return (
         <div>
@@ -23,7 +26,37 @@ export default function AnimeDetails() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="bg-gray-100"></main>
+
+            <main className="bg-gray-100">
+                {data.status === 404 ? (
+                    <p>No se ha podido encontrar ese anime</p>
+                ) : (
+                    <AnimeDetail data={data} />
+                )}
+            </main>
         </div>
     );
+}
+
+export const getStaticPaths: GetStaticPaths = async (): Promise<{
+    paths: any;
+    fallback: any;
+}> => {
+    return {
+        paths: [
+            { params: { id: "1" } },
+            { params: { id: "2" } },
+            { params: { id: "3" } },
+            { params: { id: "4" } },
+        ],
+        fallback: false,
+    };
+};
+
+export async function getStaticProps({ params }) {
+    const { id } = params;
+    const data: AnimeDetailsResult = await getAnimeDetails(id);
+    return {
+        props: { data },
+    };
 }
