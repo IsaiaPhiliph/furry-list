@@ -1,7 +1,7 @@
+import { Pagination } from "@material-ui/lab";
 import { useRouter } from "next/router";
 import React, { MouseEventHandler, useEffect, useState } from "react";
 import Loading from "../../components/Loading";
-import Pagination from "../../components/Pagination";
 import SearchResults from "../../components/SearchResults";
 import { getSearchResults } from "../../hooks/api";
 import { AnimeSearchResult } from "../../types/interfaces";
@@ -24,20 +24,20 @@ function SearchResultsPage() {
                 );
                 query &&
                     setResults(await getSearchResults(query, page, setError));
-                setLoading(false);
             }
+            setLoading(false);
         })();
     }, [page, query]);
 
     return (
-        <main className="bg-gray-100">
+        <main className="bg-gray-100 flex flex-col items-center">
             {loading && <Loading />}
             {error && <span>{error}</span>}
             {results && (
                 <Pagination
+                    count={results.last_page < page ? page : results.last_page}
                     page={page}
-                    lastPage={results.last_page}
-                    setPage={setPage}
+                    onChange={(e, v) => setPage(v)}
                 />
             )}
 

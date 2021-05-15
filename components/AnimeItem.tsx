@@ -6,7 +6,7 @@ interface Props {
 }
 const AnimeItem = ({ result }: Props) => {
     return (
-        <Link prefetch={true} href={`/${result.mal_id}`}>
+        <Link href={`/${result.mal_id}`}>
             <div className="w-full flex transform sm:hover:scale-105 flex-col space-y-3 hover:ring bg-white shadow-md py-4 rounded-md items-start transition-all hover:shadow-lg">
                 <h2 className="px-4">{result.title}</h2>
                 <div className="flex w-full h-0 pt-[100%] relative">
